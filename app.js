@@ -11,9 +11,16 @@ select.addEventListener("click", (e)=>{
     //console.log(e.target.getAttribute("alt"));
     userSelect= e.target.getAttribute("alt")
     yourChoise.innerHTML= `<img src="./assets/${userSelect}.png"></img>`
+    pc()
 })
 
+const pcArr = ["tas", "kagit", "makas"];
 
+function pc(){
+    pcRandom = pcArr[Math.floor(Math.random()*3)];
+    console.log(pcRandom);
+    pcChoise.innerHTML= `<img src="./assets/${pcRandom}.png"></img>`
+}
 
 
 
