@@ -8,6 +8,7 @@ let pcRandom;
 //!Score 
 const scoreYou = document.getElementById("you")
 const scorePc = document.getElementById("pc")
+const domTopScore = document.querySelector(".top-score")
 
 //! Modal Selectors
 const resultDiv = document.querySelector(".result-msg");
@@ -73,8 +74,9 @@ function result(){
         final.innerHTML = `💃 You Win🕺`
         document.querySelector(".modal").style.backgroundColor = "#5AB7AC"
         modalBtn.style.color = "#5AB7AC"
+        topScoreCheck()
     }
-    if(scorePc.innerHTML=='10'|| scoreYou.innerHTML=='10'){
+    if(scorePc.innerText=='10'|| scoreYou.innerText=='10'){
         modal()
     }
 }
@@ -99,3 +101,22 @@ modalBtn.addEventListener("click", ()=>{
     modalEl.style.display = "none";
     window.location.reload();
 })
+
+//! local storage data
+let storagedScore = localStorage.getItem("highScore")
+console.log(storagedScore);
+let topScore;
+
+if(storagedScore){
+    topScore = `10 - ${storagedScore}`
+}else{
+    topScore = `0 - 0`
+}
+
+domTopScore.innerText = topScore;
+function topScoreCheck(){
+    storagedScore|| localStorage.setItem("highScore", scorePc.innerText) 
+    if(storagedScore >= scorePc.innerText){
+        localStorage.setItem("highScore", +scorePc.innerText)
+    }
+}
